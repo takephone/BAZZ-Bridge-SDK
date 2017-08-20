@@ -12,7 +12,9 @@ SDK to allow 2-way communications between an Android phone and an Android Car Mu
     * [Manifest](#manifest)
   * [Initializing the SDK](#initializing)
   * [BAZZ operation modes](#bazz-operation-modes)
+  * [BAZZ channels](#bazz-channels)
   * [Incoming messages](#incoming-messages)
+  * [Outgoing messages](#outgoing-messages)
   * [Configuring operation](#configuring-operation)
     * [Whatsapp group messages](#whatsapp_group)
     * [Internal setting screens](#internal-setting-screens)
@@ -289,6 +291,59 @@ You can also listen to changes in BAZZ mode (e.g. when BAZZ turns ON cause it de
 ```
 
 
+## BAZZ channels
+
+BAZZ has 3 channels:
+
+* **Cable**:      Car multimedia system and driver's phone are connected via a USB cable
+
+* **WiFi**:       Car multimedia system and driver's phone are connected via WiFi (Phone enables WiFi Hotspot)
+
+* **Bluewtooth**: Car multimedia system and driver's phone are connected via Bluetooth
+
+The SDK continuously scans the 3 channels and tries to detect connection in each. When detected, it establishes
+a channel for communications based on priority: Cable -> WiFi - >Bluetooth
+
+To change modes use the following calls:
+
+To read the current channel state:
+
+```java
+    if (MyApplication.mBazzLib!=null)
+    {
+        int currCableState     = MyApplication.mBazzLib.getCableState();
+        
+        int currWiFiState      = MyApplication.mBazzLib.getWiFiState();
+        
+        int currBluetoothState = MyApplication.mBazzLib.getBluetoothState();
+    }
+```
+
+possible values are:
+```java
+    BazzLib.CHANNEL_STATE_DISABLED (channel unavailable, e.g. cable disconnected, WiFi disables, Bluetooth disabled...)
+    BazzLib.CHANNEL_STATE_NOT_CONNECTED (channel available, but not device found on other side)
+    BazzLib.CHANNEL_STATE_CONNECTED (channel available, and connected to device on other side)
+```
+
+
+You can also listen to changes in channels state:
+
+```java
+    MyApplication.mBazzLib.setOnBazzChannelChangedListener(new BazzLib.BazzChannelChangedListener() {
+        @Override
+        public void onBazzChannelChanged(String channelType, int channelState, String channelName) {
+            // MYTODO: do somthing here cause channel state has changed...
+            // channelType is one of: BazzLib.CHANNEL_TYPE_CABLE, BazzLib.CHANNEL_TYPE_WIFI, BazzLib.CHANNEL_TYPE_BLUETOOTH
+            // channelState: BazzLib.CHANNEL_STATE_DISABLED, BazzLib.CHANNEL_STATE_NOT_CONNECTED, BazzLib.CHANNEL_STATE_CONNECTED
+            // channelName: the name or address of a channel
+        }
+    });
+```
+
+
+
+
 ## Incoming Messages
 
 BAZZ is all about treating messages. It can intercept incoming messages from various sources, such as SMS/TEXT, Whatsapp, etc. and allow the user to hear & respond to them using voice only.
@@ -371,7 +426,45 @@ The parametrs here are:
 - name: name of sender
 - text: body of message
 
-**Note:** you can stop BAZZ form handling the message by returning **true** from the callback function.
+
+
+## Outgoing Messages
+
+From the car multimedia system side, you can initiate the following actions on the driver's phone side:
+
+Send a text (SMS) message to a recipient:
+
+```java
+    if (MyApplication.mBazzLib != null)
+    {
+        String reqID = MyApplication.mBazzLib.sendSMS(message,phone);
+    }
+```
+
+Make a call to a recipient:
+
+```java
+    if (MyApplication.mBazzLib != null)
+    {
+        String reqID = MyApplication.mBazzLib.makeCall(phone);
+    }
+```
+
+Send a WhatsApp message to a recipient:
+
+```java
+    if (MyApplication.mBazzLib != null)
+    {
+    	// if group has a value - the message will be sent to that group
+    	// if name has a value - message will be sent to the contact in that name
+    	// if phone has a value - message will be sent to a contact with that number
+        String reqID = MyApplication.mBazzLib.sendWhatsApp(message,phone,name,groups);
+    }
+```
+
+
+
+
 
 ## Configuring operation
 
