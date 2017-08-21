@@ -38,17 +38,17 @@ You can import this project to Android Studio, and use it as a reference
 or base to make your alterations.
 
 If you already have an existing project, or want to create a new one,
-The BAZZ-Bridge SDK comes in the form of **bazz_bridge-debug.aar**. You should receive it from us, along with
+The BAZZ-Bridge SDK comes in the form of **bazz_bridge_sdk.aar**. You should receive it from us, along with
 the App ID.
 
 To add it to your project, follow the steps below:
 
 1. With your project open in Android Studio, select '**File => New => New Module**'
 2. In the dialog opened, select '**Import .JAR/.AAR Package**', and click '**Next**'
-3. In the '**File name**' line - browse to the '**bazz_bridge-debug**' folder of the demo project,
+3. In the '**File name**' line - browse to the '**bazz_bridge_sdk**' folder of the demo project,
    and select the **aar** file. Click on '**Finish**'
 4. After Gradle Sync is done, go to your project settings: right-click on the project module, and select '**Open Module Settings**'.
-5. Select your **app** module in the left pane, and click the '**Dependencies**' tab. Click the **plus (+)** sign, and select '**Module dependency**'. Select '**:bazz_bridge-debug**', and click '**OK**' twice.
+5. Select your **app** module in the left pane, and click the '**Dependencies**' tab. Click the **plus (+)** sign, and select '**Module dependency**'. Select '**:bazz_bridge_sdk**', and click '**OK**' twice.
 
 Done. Now you can start integrating the BAZZ-Bridge SDK as explained in the next sections.
 
