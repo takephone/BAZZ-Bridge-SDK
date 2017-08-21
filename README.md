@@ -41,6 +41,8 @@ If you already have an existing project, or want to create a new one,
 The BAZZ-Bridge SDK comes in the form of **bazz_bridge_sdk.aar**. You should receive it from us, along with
 the App ID.
 
+You can also download it from here: https://dl.dropboxusercontent.com/s/vijxkoh6xf9w2r7/bazz_bridge_sdk.aar
+
 To add it to your project, follow the steps below:
 
 1. With your project open in Android Studio, select '**File => New => New Module**'
