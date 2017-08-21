@@ -19,7 +19,6 @@ SDK to allow 2-way communications between an Android phone and an Android Car Mu
     * [Whatsapp group messages](#whatsapp_group)
     * [Internal setting screens](#internal-setting-screens)
     * [More settings](#more-playback)
-  * [Generate your own messages(!)](#generate-your-own-messages)
 
 <!-- toc stop -->
 
@@ -584,48 +583,5 @@ To check if this is needed:
     }
 ```
 
-
-## Generate your own messages(!)
-
-You can send your own text messages to BAZZ for it to readout to the user. To do this:
-
-```java
-    if (MyApplication.mBazzLib != null)
-    {
-        String requestId = MyApplication.mBazzLib.requestAddIncomingMessage(phone,name,text);
-    }
-```
-
-Parameters are:
-
-- **phone:** the phone number to reply to - if this is specified, the user will be prompted to select a reply method - he/she can send back a text message, call back, record a voice message, or stop
-- **name:** the sender name as BAZZ will read it to the user (i.e. "new message from (name)")
-- **text:** the actual text to read to the user
-
-Return value:
-
-is a String holding the ID of the request - you can use it to get the response from:
-
-```java
-    if (MyApplication.mBazzLib != null)
-    {
-        MyApplication.mBazzLib.setOnBazzRequestResultListener(new BazzLib.BazzRequestResultListener() {
-            @Override
-            public boolean onRequestResult(String requestId, String requestText, String requestResult)
-            {
-                HandleCallbackFromLib("Message reply was "+requestResult);
-                return false;
-            }
-        });
-    }
-```
-
-In the callback you will get:
-
-- **requestId:** the id of the message you asked to send
-- **requestText:** the original text of the message you sent
-- **requestResult:** the command the user selected
-
-**Note:** return false to allow BAZZ to continue treating the user selected reply (e.g. send a text message, call the phone number you supplied, etc.), or true if you want to handle the user reply command yourself.
 
 #Thank you for using BAZZ !
