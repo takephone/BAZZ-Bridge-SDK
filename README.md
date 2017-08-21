@@ -47,8 +47,7 @@ To add it to your project, follow the steps below:
 
 1. With your project open in Android Studio, select '**File => New => New Module**'
 2. In the dialog opened, select '**Import .JAR/.AAR Package**', and click '**Next**'
-3. In the '**File name**' line - browse to the '**bazz_bridge_sdk**' folder of the demo project,
-   and select the **aar** file. Click on '**Finish**'
+3. In the '**File name**' line - browse to the '**bazz_bridge_sdk**' folder of the demo project, or to where you saved the file from the link above, and select the **aar** file. Click on '**Finish**'
 4. After Gradle Sync is done, go to your project settings: right-click on the project module, and select '**Open Module Settings**'.
 5. Select your **app** module in the left pane, and click the '**Dependencies**' tab. Click the **plus (+)** sign, and select '**Module dependency**'. Select '**:bazz_bridge_sdk**', and click '**OK**' twice.
 
