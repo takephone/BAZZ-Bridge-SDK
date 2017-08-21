@@ -7,8 +7,8 @@ SDK to allow 2-way communications between an Android phone and an Android Car Mu
 * [Installation](#installation)
 * [Usage](#usage)
   * [Preparing your app](#preparing-your-app)
-    * [Adding classes](#adding-classes)
     * [Gradle](#gradle)
+    * [Adding classes](#adding-classes)
     * [Manifest](#manifest)
   * [Initializing the SDK](#initializing)
   * [BAZZ operation modes](#bazz-operation-modes)
@@ -59,6 +59,22 @@ Done. Now you can start integrating the BAZZ-Bridge SDK as explained in the next
 
 **IMPORTANT:** set your app '**minSdkVersion**' to **16**, and '**targetSdkVersion**' to **19**
 
+
+### Gradle
+
+- In your app **build.gradle**, make sure you have **minSdkVersion 16** and **targetSdkVersion 19**.
+
+- In your app **build.gradle**, make sure you have **volley** included. If you do not already have it - add the line:
+```java
+dependencies {
+	...
+	compile 'com.android.volley:volley:1.0.0'
+	...
+	}
+```
+
+
+
 ### Adding classes
 
 - Add a new java file: '**BazzNotificationServiceLink.java**':
@@ -102,11 +118,6 @@ public class MyApplication extends Application {
 ```
 
 **Note:** if you already have an '**Application**' class in your app - just add the code explained [below](#initializing)
-
-
-### Gradle
-
-- In your app **build.gradle**, make sure you have **minSdkVersion 16** and **targetSdkVersion 19**.
 
 
 ### Manifest
