@@ -468,13 +468,28 @@ Send a WhatsApp message to a recipient:
 ```java
     if (MyApplication.mBazzLib != null)
     {
-    	// if group has a value - the message will be sent to that group
-    	// if name has a value - message will be sent to the contact in that name
-    	// if phone has a value - message will be sent to a contact with that number
         String reqID = MyApplication.mBazzLib.sendWhatsApp(message,phone,name,groups);
     }
 ```
 
+
+**Important:**
+In the case of sending outgoing WhatsApp messages, you will have to implement the sending action in your app on the phone side. To do this, add a listener to be notifed of the request to send a WhatsApp message:
+
+```java
+    MyApplication.mBazzLib.setOnWhatsAppSendMessageRequestListener(new BazzLib.BazzWhatsAppSendMessageRequestListener() {
+        @Override
+        public boolean onWhatsAppSendMessageReques(String type,
+                                                  String phone,
+                                                  String name,
+                                                  String text)
+        {
+            // handle the messages here...
+        
+            return true;
+        }
+    });
+```
 
 
 
