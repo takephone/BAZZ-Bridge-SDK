@@ -225,11 +225,8 @@ the operation of BAZZ...)
             // APP_ID is a string you will receive from us when we register your app
             // Use BazzLib.SDK_MODE_CAR if you are building the app for the CAR multimedia system
             // Use BazzLib.SDK_MODE_PHONE if you are building the app for the PHONE multimedia system
-            mBazzLib.init(this,<BazzLib.SDK_MODE_CAR or BazzLib.SDK_MODE_PHONE>,APP_ID);
+            mBazzLib.init(this,<BazzLib.SDK_MODE_CAR or BazzLib.SDK_MODE_PHONE>,APP_ID,"<Your app name>");
             
-            // You must call these functions, too to initialize the app properly
-            mBazzLib.setAppName("<Your app user-friendly name>");
-
             // These calls enable treatment of the IM messaging apps
             mBazzLib.setIncomingWorkWithSMSorMMS(true);
             mBazzLib.setIncomingWorkWithWhatsapp(true);
