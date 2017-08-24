@@ -302,7 +302,7 @@ You can also listen to changes in BAZZ mode (e.g. when BAZZ turns ON cause it de
 
 **NOTE:**
 
-Once you call this with BazzLib.BAZZ_MODE_PHONE on the phone device, and with BazzLib.BAZZ_MODE_CAR on the car multimedia system, the two devices start trying to connect with each other over the 3 possible channels (see next section). Once they get connected on one or more (you can be notified on this with the callbacks described below) - the phone side will send notifications on incoming messages or calls to the car multimedia system, and the car multimedia system can instruct the phone device to send messages or make calls.
+Once you call this with **BazzLib.BAZZ_MODE_PHONE** on the phone device, and with **BazzLib.BAZZ_MODE_CAR** on the car multimedia system, the two devices start trying to connect with each other over the 3 possible channels (see next section). Once they get connected on one or more (you can be notified on this with the callbacks described below) - the phone side will send notifications on incoming messages or calls to the car multimedia system, and the car multimedia system can instruct the phone device to send messages or make calls.
 
 
 
