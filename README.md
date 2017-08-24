@@ -447,9 +447,9 @@ The parametrs here are:
 
 ## Outgoing Messages
 
-From the car multimedia system side, you can initiate the following actions on the driver's phone side:
+From the **car multimedia** system side, you can initiate the following actions on the driver's phone side:
 
-Send a text (SMS) message to a recipient:
+1. Send a text (SMS) message to a recipient:
 
 ```java
     if (MyApplication.mBazzLib != null)
@@ -458,7 +458,11 @@ Send a text (SMS) message to a recipient:
     }
 ```
 
-Make a call to a recipient:
+The Bridge library on the **Phone** side receives this command and sends a text (SMS) message.
+
+
+
+2. Make a call to a recipient:
 
 ```java
     if (MyApplication.mBazzLib != null)
@@ -467,7 +471,11 @@ Make a call to a recipient:
     }
 ```
 
-Send a WhatsApp message to a recipient:
+The Bridge library on the **Phone** side receives this command and initiates a call.
+
+
+
+3. Send a WhatsApp message to a recipient:
 
 ```java
     if (MyApplication.mBazzLib != null)
@@ -476,11 +484,14 @@ Send a WhatsApp message to a recipient:
     }
 ```
 
+The Bridge library on the **Phone** side receives this command and triggers a callback to the **APK** module you have on the **Phone** side - it can then send a **WhatsApp** message using INPRIS SDK.
+
 
 **Important:**
 In the case of sending outgoing WhatsApp messages, you will have to implement the sending action in your app on the phone side. To do this, add a listener to be notifed of the request to send a WhatsApp message:
 
 ```java
+	// *** This callback works on the Phone side only ***
     MyApplication.mBazzLib.setOnWhatsAppSendMessageRequestListener(new BazzLib.BazzWhatsAppSendMessageRequestListener() {
         @Override
         public boolean onWhatsAppSendMessageReques(String type,
