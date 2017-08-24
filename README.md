@@ -289,9 +289,10 @@ To read the current mode call:
 ```
 
 
-You can also listen to changes in BAZZ mode (e.g. when BAZZ turns ON cause it detected driving state):
+You can also listen to changes in BAZZ mode:
 
 ```java
+	// *** This callback works on both Phone and Car sides ***
     MyApplication.mBazzLib.setOnBazzModeChangedListener(new BazzLib.BazzModeChangedListener() {
         @Override
         public void onBazzModeChanged() {
@@ -301,7 +302,6 @@ You can also listen to changes in BAZZ mode (e.g. when BAZZ turns ON cause it de
 ```
 
 **NOTE:**
-
 Once you call this with **BazzLib.BAZZ_MODE_PHONE** on the phone device, and with **BazzLib.BAZZ_MODE_CAR** on the car multimedia system, the two devices start trying to connect with each other over the 3 possible channels (see next section). Once they get connected on one or more (you can be notified on this with the callbacks described below) - the phone side will send notifications on incoming messages or calls to the car multimedia system, and the car multimedia system can instruct the phone device to send messages or make calls.
 
 
@@ -345,6 +345,7 @@ possible values are:
 You can also listen to changes in channels state:
 
 ```java
+	// *** This callback works on both Phone and Car sides ***
     MyApplication.mBazzLib.setOnBazzChannelChangedListener(new BazzLib.BazzChannelChangedListener() {
         @Override
         public void onBazzChannelChanged(String channelType, int channelState, String channelName) {
@@ -361,7 +362,7 @@ You can also listen to changes in channels state:
 
 ## Incoming Messages
 
-BAZZ is all about treating messages. It can intercept incoming messages from various sources, such as SMS/TEXT, Whatsapp, etc. and allow the user to hear & respond to them using voice only.
+BAZZ bridge on the **Phone** side can intercept incoming messages from various sources, such as SMS/TEXT, Whatsapp, calls, etc. and sends them over the communication channels to the **Car** side. The app on the **Car** side can them play them and allow the user to select a reply option. That selection is sent back to the **Phone** side for taking action (see the next section).
 
 You can can enable/disable Messaging apps using:
 
@@ -406,6 +407,7 @@ You can can query current enable/disable state using:
 To be notified of incoming messages in your app, use:
 
 ```java
+	// *** This callback works on the Car side only ***
     MyApplication.mBazzLib.setOnIncomingMessagesListener(new BazzLib.BazzIncomingMessagesListener() {
         @Override
         public boolean onIncomingMessagesListener(String type,
