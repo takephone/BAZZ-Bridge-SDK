@@ -13,6 +13,7 @@ SDK to allow 2-way communications between an Android phone and an Android Car Mu
   * [Initializing the SDK](#initializing)
   * [BAZZ operation modes](#bazz-operation-modes)
   * [BAZZ channels](#bazz-channels)
+  * [Bidirectional messages](#bidirectional-messages)
   * [Incoming messages](#incoming-messages)
   * [Outgoing messages](#outgoing-messages)
   * [Configuring operation](#configuring-operation)
@@ -353,6 +354,38 @@ You can also listen to changes in channels state:
             // channelType is one of: BazzLib.CHANNEL_TYPE_CABLE, BazzLib.CHANNEL_TYPE_WIFI, BazzLib.CHANNEL_TYPE_BLUETOOTH
             // channelState: BazzLib.CHANNEL_STATE_DISABLED, BazzLib.CHANNEL_STATE_NOT_CONNECTED, BazzLib.CHANNEL_STATE_CONNECTED
             // channelName: the name or address of a channel
+        }
+    });
+```
+
+
+
+
+## Bidirectional Messages
+
+Once channel/s of communications are established, both sides (**Phone** and **Car**) can exchange string messages between them.
+
+To send a string message call:
+
+```java
+    if (MyApplication.mBazzLib != null)
+    {
+        String reqID = MyApplication.mBazzLib.sendString(message);
+    }
+```
+
+
+To be notified of incoming messages in your app, use:
+
+```java
+	// *** This callback works on both sides ***
+    MyApplication.mBazzLib.setOnIncomingStringsListener(new BazzLib.BazzIncomingStringsListener() {
+        @Override
+        public boolean onIncomingString(String text)
+        {
+            // handle the text here...
+        
+            return false;
         }
     });
 ```
