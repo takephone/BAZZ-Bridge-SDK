@@ -599,14 +599,44 @@ You can get the current setting:
 
 ### Whatsapp groups ignore list
 
-User may not want BAZZ to read ALL his/her Whatsapp groups (some of them can be really noisey...) Use this code to popup the internal '**Whatsapp groups**' setting screen:
+User may not want BAZZ to read ALL his/her Whatsapp groups (some of them can be really noisey...). You can manage an '**Ignore List**' with the following functions.
+
+To get a list of all Whatsapp groups known to BAZZ Bridge (only those who were already treated by it)
 
 ```java
     if (MyApplication.mBazzLib!=null)
     {
-        MyApplication.mBazzLib.popupWhatsappGroupsIgnoreSettingsUI();
+    	ArrayList<WhatsAppGroupHistoryRec> trgArray = new ArrayList<WhatsAppGroupHistoryRec>();
+    
+        MyApplication.mBazzLib.getWhatsappGroups(trgArray);
     }
 ```
+
+You pass an ArrayList and the function fills it up for you. Each item in the ArrayList is of type **WhatsAppGroupHistoryRec**:
+
+```java
+public class WhatsAppGroupHistoryRec {
+
+	public String name;
+	public int    blocked;
+	public long   rowId;
+}```
+
+You can display a list of the names, and allow the user to check/uncheck groups he/she wants to ignore by settings the **blocked** field, and saving:
+
+```java
+    if (MyApplication.mBazzLib!=null)
+    {
+    	//...
+    	
+    	trgArray.get(i).blocked = 1 or 0;
+    	
+    	//...
+    
+        MyApplication.mBazzLib.setWhatsappGroups(trgArray);
+    }
+```
+
 
 
 
