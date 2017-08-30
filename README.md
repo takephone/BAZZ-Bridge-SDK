@@ -18,7 +18,7 @@ SDK to allow 2-way communications between an Android phone and an Android Car Mu
   * [Outgoing messages](#outgoing-messages)
   * [Configuring operation](#configuring-operation)
     * [Whatsapp group messages](#whatsapp-group-messages)
-    * [Whatsapp groups ignore list](#whatsapp-group-ignore-list)
+    * [Whatsapp groups ignore list](#whatsapp-groups-ignore-list)
     * [Internal setting screens](#internal-setting-screens)
     * [More settings](#more-playback)
 
