@@ -17,7 +17,7 @@ SDK to allow 2-way communications between an Android phone and an Android Car Mu
   * [Incoming messages](#incoming-messages)
   * [Outgoing messages](#outgoing-messages)
   * [Configuring operation](#configuring-operation)
-    * [Treating incoming message](#treating-incoming-messages)
+    * [Treating incoming messages](#treating-incoming-messages)
     * [Handling Whatsapp group messages](#handling-whatsapp-group-messages)
     * [Whatsapp groups ignore list](#whatsapp-groups-ignore-list)
     * [Handling incoming calls](#handling-incoming-calls)
@@ -571,7 +571,7 @@ In the case of sending outgoing WhatsApp messages, you will have to implement th
 Here are some functions you can use to display screens for misc. settings of BAZZ Bridge operation:
 
 
-### Treating incoming message
+### Treating incoming messages
 
 BAZZ bridge on the **Phone** side can intercept incoming messages from various sources, such as SMS/TEXT, Whatsapp, calls, etc. and sends them over the communication channels to the **Car** side. The app on the **Car** side can them play them and allow the user to select a reply option. That selection is sent back to the **Phone** side for taking action (see the next section).
 
