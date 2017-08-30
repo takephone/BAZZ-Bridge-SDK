@@ -620,7 +620,8 @@ public class WhatsAppGroupHistoryRec {
 	public String name;
 	public int    blocked;
 	public long   rowId;
-}```
+}
+```
 
 You can display a list of the names, and allow the user to check/uncheck groups he/she wants to ignore by settings the **blocked** field, and saving:
 
