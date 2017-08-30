@@ -568,6 +568,9 @@ In the case of sending outgoing WhatsApp messages, you will have to implement th
 
 ## Configuring operation
 
+Here are some functions you can use to display screens for misc. settings of BAZZ Bridge operation:
+
+
 ### Treating incoming message
 
 BAZZ bridge on the **Phone** side can intercept incoming messages from various sources, such as SMS/TEXT, Whatsapp, calls, etc. and sends them over the communication channels to the **Car** side. The app on the **Car** side can them play them and allow the user to select a reply option. That selection is sent back to the **Phone** side for taking action (see the next section).
