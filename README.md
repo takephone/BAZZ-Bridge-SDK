@@ -19,6 +19,8 @@ SDK to allow 2-way communications between an Android phone and an Android Car Mu
   * [Configuring operation](#configuring-operation)
     * [Whatsapp group messages](#whatsapp-group-messages)
     * [Whatsapp groups ignore list](#whatsapp-groups-ignore-list)
+    * [Handling incoming calls](#handling-incoming-calls)
+    * [Blocking unknown senders](#blocking-unknown-senders)
     * [Internal setting screens](#internal-setting-screens)
     * [More settings](#more-playback)
 
@@ -478,6 +480,27 @@ The parametrs here are:
 - text: body of message
 
 
+**System settings required - enabling 'notification access' to your app**
+
+To allow BAZZ to read IM messaging apps input, the user must manuall enable your app in the **system** '**notifications**' settings screen. To open it:
+
+```java
+    if (MyApplication.mBazzLib != null)
+    {
+        MyApplication.mBazzLib.popupNotificationAccessUI();
+    }
+```
+
+To check if this is needed:
+
+```java
+    if (MyApplication.mBazzLib != null)
+    {
+        boolean bAppEnabledInSystemNotifications = MyApplication.mBazzLib.getIsNotificationAccessEnabled();
+    }
+```
+
+
 
 ## Outgoing Messages
 
@@ -587,7 +610,7 @@ User may not want BAZZ to read ALL his/her Whatsapp groups (some of them can be 
 
 
 
-###Incoming calls
+### Handling incoming calls
 
 You can also control treatment of incoming **calls**:
 
@@ -607,7 +630,7 @@ You can get the current setting:
     }
 ```
 
-###Blocking unknown senders
+### Blocking unknown senders
 
 And finally - you can ignore messages from unknown senders:
 
@@ -624,26 +647,6 @@ You can get the current setting:
     if (MyApplication.mBazzLib != null)
     {
         boolean bOn = MyApplication.mBazzLib.getIncomingReadBlockedOrUnknownSenders();
-    }
-```
-
-**System settings required - enabling 'notification access' to your app**
-
-To allow BAZZ to read IM messaging apps input, the user must manuall enable your app in the **system** '**notifications**' settings screen. To open it:
-
-```java
-    if (MyApplication.mBazzLib != null)
-    {
-        MyApplication.mBazzLib.popupNotificationAccessUI();
-    }
-```
-
-To check if this is needed:
-
-```java
-    if (MyApplication.mBazzLib != null)
-    {
-        boolean bAppEnabledInSystemNotifications = MyApplication.mBazzLib.getIsNotificationAccessEnabled();
     }
 ```
 
