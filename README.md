@@ -21,8 +21,7 @@ SDK to allow 2-way communications between an Android phone and an Android Car Mu
     * [Whatsapp groups ignore list](#whatsapp-groups-ignore-list)
     * [Handling incoming calls](#handling-incoming-calls)
     * [Blocking unknown senders](#blocking-unknown-senders)
-    * [Internal setting screens](#internal-setting-screens)
-    * [More settings](#more-playback)
+    * [Bluetooth ignore list](#bluetooth-ignore-list)
 
 <!-- toc stop -->
 
@@ -682,4 +681,48 @@ You can get the current setting:
 ```
 
 
-#Thank you for using BAZZ Bridge !
+### Bluetooth ignore list
+
+To detect connection on the **Bluetooth channel**, BAZZ Bridge scans all paired devices. User may want to ignore some devices, so that this scan does not waste time and battery.
+
+To get a list of all paired Bluetooth devices:
+
+```java
+    if (MyApplication.mBazzLib!=null)
+    {
+    	ArrayList<BluetoothDeviceIgnoreRec> trgArray = new ArrayList<BluetoothDeviceIgnoreRec>();
+    
+        MyApplication.mBazzLib.getBluetoothIgnoreList(trgArray);
+    }
+```
+
+You pass an ArrayList and the function fills it up for you. Each item in the ArrayList is of type **BluetoothDeviceIgnoreRec**:
+
+```java
+public class BluetoothDeviceIgnoreRec {
+
+    public String  name;
+    public boolean ignore;
+}
+```
+
+You can display a list of the names, and allow the user to check/uncheck a device he/she wants to ignore by settings the **ignore** field, and saving:
+
+```java
+    if (MyApplication.mBazzLib!=null)
+    {
+    	//...
+    	
+    	trgArray.get(i).ignore = true or false;
+    	
+    	//...
+    
+        MyApplication.mBazzLib.setBluetoothIgnoreList(trgArray);
+    }
+```
+
+
+
+
+
+# Thank you for using BAZZ Bridge !
