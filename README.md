@@ -17,7 +17,8 @@ SDK to allow 2-way communications between an Android phone and an Android Car Mu
   * [Incoming messages](#incoming-messages)
   * [Outgoing messages](#outgoing-messages)
   * [Configuring operation](#configuring-operation)
-    * [Whatsapp group messages](#whatsapp-group-messages)
+    * [Incoming message treatment](#incoming-messages-treatment)
+    * [Handling Whatsapp group messages](#handling-whatsapp-group-messages)
     * [Whatsapp groups ignore list](#whatsapp-groups-ignore-list)
     * [Handling incoming calls](#handling-incoming-calls)
     * [Blocking unknown senders](#blocking-unknown-senders)
@@ -567,7 +568,53 @@ In the case of sending outgoing WhatsApp messages, you will have to implement th
 
 ## Configuring operation
 
-### Whatsapp group messages
+### Incoming message treatment
+
+BAZZ bridge on the **Phone** side can intercept incoming messages from various sources, such as SMS/TEXT, Whatsapp, calls, etc. and sends them over the communication channels to the **Car** side. The app on the **Car** side can them play them and allow the user to select a reply option. That selection is sent back to the **Phone** side for taking action (see the next section).
+
+You can can enable/disable Messaging apps using:
+
+```java
+    if (MyApplication.mBazzLib!=null)
+    {
+        MyApplication.mBazzLib.setIncomingWorkWithSMSorMMS(true/false);
+        
+        MyApplication.mBazzLib.setIncomingWorkWithWhatsapp(true/false);
+        
+        MyApplication.mBazzLib.setIncomingWorkWithMessenger(true/false);
+        
+        MyApplication.mBazzLib.setIncomingWorkWithLine(true/false);
+        
+        MyApplication.mBazzLib.setIncomingWorkWithGmail(true/false);
+        
+        MyApplication.mBazzLib.setIncomingWorkWithWeChat(true/false);
+    }
+```
+
+You can can query current enable/disable state using:
+
+```java
+    if (MyApplication.mBazzLib!=null)
+    {
+        boolean bOn;
+    
+        bOn = MyApplication.mBazzLib.getIncomingWorkWithSMSorMMS();
+        
+        bOn = MyApplication.mBazzLib.getIncomingWorkWithWhatsapp();
+        
+        bOn = MyApplication.mBazzLib.getIncomingWorkWithMessenger();
+        
+        bOn = MyApplication.mBazzLib.getIncomingWorkWithLine();
+        
+        bOn = MyApplication.mBazzLib.getIncomingWorkWithGmail();
+        
+        bOn = MyApplication.mBazzLib.getIncomingWorkWithWeChat();
+    }
+```
+
+
+
+### Handling Whatsapp group messages
 
 For Whatsapp **group** messages, there is an additional configuration you can make:
 - do not play them at all
