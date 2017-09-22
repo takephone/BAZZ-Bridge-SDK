@@ -444,18 +444,32 @@ To be notified of incoming messages in your app, use:
 
 ```java
 	// *** This callback works on the Car side only ***
-    MyApplication.mBazzLib.setOnIncomingMessagesListener(new BazzLib.BazzIncomingMessagesListener() {
-        @Override
-        public boolean onIncomingMessagesListener(String type,
-                                                  String phone,
-                                                  String name,
-                                                  String text)
-        {
-            // handle the messages here...
+        MyApplication.mBazzLib.setOnIncomingMessagesListener(new BazzLib.BazzIncomingMessagesListener() {
         
-            return false;
-        }
-    });
+        	// *** This is the callback to be used on the PHONE side: you get the info on the
+        	// *** incoming message, and can decice what to do with it - return null if you
+        	// *** handle the message locally on the phone, and do NOT want it to be passed to
+        	// *** the CAR side, or return any string (e.g. GUID string) to have the message
+        	// *** passed to the CAR side, along with the string you return here (see below)
+            @Override
+            public String onIncomingMessagePhoneSide(String type, String phone, String name, String text) {
+
+                // to demo return value - if text starts with xxx - do not pass through
+                if (text.startsWith("xxx"))
+                {
+                    return null;
+                }
+
+                return "This is a special key";
+            }
+
+        	// *** This is the callback to be used on the CAR side: you get the info on the
+        	// *** incoming message, and the string you returned on the PHONE side (auxInfo)
+            @Override
+            public void onIncomingMessageCarSide(String type, String phone, String name, String messageText, String auxInfo) {
+                // NOP
+            }
+        });
 ```
 
 The parametrs here are:
