@@ -254,9 +254,9 @@ the operation of BAZZ...)
         BazzInitDoneListener completionListener = new BazzLib.BazzInitDoneListener() {
     		@Override
     		public void onBazzInitDone(String error) {
-  				// error is NULL for success, failure reason if not
+  			// error is null for success, failure reason if not
     		}
-		};
+	};
 ```
               
               
