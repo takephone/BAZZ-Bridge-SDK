@@ -229,7 +229,7 @@ the operation of BAZZ...)
             // APP_ID is a string you will receive from us when we register your app
             // Use BazzLib.SDK_MODE_CAR if you are building the app for the CAR multimedia system
             // Use BazzLib.SDK_MODE_PHONE if you are building the app for the PHONE multimedia system
-            mBazzLib.init(this,<BazzLib.SDK_MODE_CAR or BazzLib.SDK_MODE_PHONE>,APP_ID,"<Your app name>");
+            mBazzLib.init(this,<BazzLib.SDK_MODE_CAR or BazzLib.SDK_MODE_PHONE>,APP_ID,"<Your app name>",completionListener);
             
             // These calls enable treatment of the IM messaging apps
             mBazzLib.setIncomingWorkWithSMSorMMS(true);
@@ -246,6 +246,21 @@ the operation of BAZZ...)
             }, Context.BIND_AUTO_CREATE);
         }
 ```
+
+* **ATTENTION:**:   Please note - the 'init' function is async - that is it returns immediately, but the SDK is not ready until it
+              calls the 'completionListener'. Only then you can use the various SDK functions:
+
+```java
+        BazzInitDoneListener completionListener = new BazzLib.BazzInitDoneListener() {
+    		@Override
+    		public void onBazzInitDone(String error) {
+  				// error is NULL for success, failure reason if not
+    		}
+		};
+```
+              
+              
+
 
 - In the '**onTerminate**' function, add the following lines:
 
